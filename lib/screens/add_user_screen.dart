@@ -4,7 +4,7 @@ import 'package:realm_poc/core/variables.dart';
 import 'package:realm_poc/models/gender.dart';
 import 'package:realm_poc/providers/add_user_form_provider.dart';
 import 'package:realm_poc/providers/bottom_navgation_bar_provider.dart';
-import 'package:realm_poc/screens/edit_user.dart';
+import 'package:realm_poc/screens/list_user.dart';
 
 class AddUser extends StatelessWidget {
   const AddUser({super.key});

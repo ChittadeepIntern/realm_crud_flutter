@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:realm/realm.dart';
 import 'package:realm_poc/providers/add_user_form_provider.dart';
 import 'package:realm_poc/providers/bottom_navgation_bar_provider.dart';
+import 'package:realm_poc/providers/list_all_users_provider.dart';
 import 'package:realm_poc/screens/home.dart';
 
 void main() async {
@@ -19,6 +20,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => BottomNavigationBarProvider()),
         ChangeNotifierProvider(create: (context) => AddUserFormProvider()),
+        ChangeNotifierProvider(create: (context) => ListAllUsersProvider())
       ],
       child: const MyApp(),
     ),

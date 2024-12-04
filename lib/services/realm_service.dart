@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:realm/realm.dart';
 import 'package:realm_poc/entities/user_entity.dart';
 import 'package:realm_poc/models/user_model.dart';
@@ -26,6 +27,16 @@ class RealmService {
           gender: userModel.gender!.name,
           phoneNumber: userModel.phoneNumber));
     });
+  }
+
+  void delete(String email) {
+    final userToDelete = realm.find<UserEntity>(email);
+    if (userToDelete != null) {
+      realm.write(() => realm.delete(userToDelete));
+      log("user successfully deleted");
+    } else {
+      log("User does not exist");
+    }
   }
 
   List<UserModel> getAllUsers() => realm
