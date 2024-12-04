@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:realm_poc/core/variables.dart';
 import 'package:realm_poc/models/gender.dart';
 import 'package:realm_poc/providers/add_user_form_provider.dart';
+import 'package:realm_poc/providers/bottom_navgation_bar_provider.dart';
+import 'package:realm_poc/screens/edit_user.dart';
 
 class AddUser extends StatelessWidget {
   const AddUser({super.key});
@@ -12,7 +14,8 @@ class AddUser extends StatelessWidget {
     final formKey = GlobalKey<FormState>();
     final AddUserFormProvider provider =
         Provider.of<AddUserFormProvider>(listen: false, context);
-
+    final BottomNavigationBarProvider bottomNavigationBarProvider =
+        Provider.of<BottomNavigationBarProvider>(listen: true, context);
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 197, 206, 231),
       body: Padding(
@@ -152,7 +155,8 @@ class AddUser extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 2),
                               child: TextFormField(
-                                onSaved: (value) => provider.phoneNumber=value!,
+                                onSaved: (value) =>
+                                    provider.phoneNumber = value!,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return "Phone number cannot be null";
@@ -261,11 +265,10 @@ class AddUser extends StatelessWidget {
                         builder: (context, provider, child) => ElevatedButton(
                             onPressed: () {
                               if (formKey.currentState?.validate() ?? false) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text('Form is valid!')));
                                 formKey.currentState?.save();
                                 provider.saveData();
+                                bottomNavigationBarProvider
+                                    .updateCurrentIndex(1);
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(

@@ -6,6 +6,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:realm_poc/models/gender.dart';
 import 'package:realm_poc/models/user_model.dart';
 
+import 'package:realm/realm.dart';
+import 'package:realm_poc/services/realm_service.dart';
+
 class AddUserFormProvider extends ChangeNotifier {
   String _countryCode = "91";
   late String _name;
@@ -80,7 +83,13 @@ class AddUserFormProvider extends ChangeNotifier {
   }
 
   void saveData() {
-    var user = UserModel(name, countryCode, phoneNumber, gender, birthdate);
-    log(user.toString());
+    var user =
+        UserModel(name, countryCode, phoneNumber, email, gender, birthdate);
+    try {
+      RealmService.instance.write(user);
+      
+    } catch (e) {
+      log(e.toString());
+    }
   }
 }

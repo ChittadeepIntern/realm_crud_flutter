@@ -1,10 +1,19 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:realm/realm.dart';
 import 'package:realm_poc/providers/add_user_form_provider.dart';
 import 'package:realm_poc/providers/bottom_navgation_bar_provider.dart';
 import 'package:realm_poc/screens/home.dart';
 
-void main() {
+void main() async {
+
+ WidgetsFlutterBinding.ensureInitialized();
+
+
   runApp(
     MultiProvider(
       providers: [
@@ -14,6 +23,7 @@ void main() {
       child: const MyApp(),
     ),
   );
+
 }
 
 class MyApp extends StatelessWidget {
@@ -39,3 +49,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
