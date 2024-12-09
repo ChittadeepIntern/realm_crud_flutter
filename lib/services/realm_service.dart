@@ -8,9 +8,9 @@ import 'package:realm_poc/models/user_model.dart';
 class RealmService {
   late Realm realm;
 
-  static RealmService instance = RealmService();
+  static RealmService instance = RealmService._internal();
 
-  RealmService() {
+  RealmService._internal() {
     final config = Configuration.local([UserEntity.schema]);
     realm = Realm(config);
   }

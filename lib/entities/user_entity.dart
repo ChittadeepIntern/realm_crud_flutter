@@ -1,5 +1,5 @@
 import 'package:realm/realm.dart';  // import realm package
- part 'user_entity.realm.dart';
+ part '../core/user_entity.realm.dart';
 
 @RealmModel()
 class _UserEntity {
